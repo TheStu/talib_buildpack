@@ -31,7 +31,7 @@ make
 make install
 
 echo "=====> Getting talib_ruby"
-env ARCHFLAGS="-arch x86_64" gem install talib_ruby -- --with-talib-include="$CPATH/talib"  --with-talib-lib="$LD_LIBRARY_PATH"
+env ARCHFLAGS="-arch x86_64" gem install talib_ruby -- --with-talib-include="/app/vendor/ta-lib/include"  --with-talib-lib="/app/vendor/ta-lib/lib"
 
 
 
