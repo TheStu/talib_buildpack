@@ -12,11 +12,6 @@ CACHE_DIR=$2
 VENDOR_DIR="$BUILD_DIR/vendor"
 TALIB_DIR="$BUILD_DIR/vendor/ta-lib"
 
-function setDefaultEnv (){
-  echo "export $1=/app/vendor/$2:\$$1" >> $PROFILE_PATH
-  echo "export $1=/app/vendor/$2:\$$1" >> $EXPORT_PATH
-}
-
 echo "=====> Getting talib sources"
 curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz" -s -o - | tar -xvzf - -C "$VENDOR_DIR"
 
