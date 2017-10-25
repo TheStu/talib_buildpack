@@ -19,9 +19,9 @@ curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-
 echo "=====> Fix Makefile.in"
 cd $VENDOR_DIR
 find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/talibins/g' {} +
-mkdir talibins
-mkdir talibins/lib
-mkdir talibins/include
+mkdir -p talibins
+mkdir -p talibins/lib
+mkdir -p talibins/include
 
 
 echo "=====> Compiling talib"
@@ -31,8 +31,8 @@ chmod +x configure
 make
 make install
 
-echo "=====> Copy libs and include"
-cp -R "$TALIB_DIR/src/.libs" /app/vendor/talibins/lib
+#echo "=====> Copy libs and include"
+#cp -R "$TALIB_DIR/src/.libs" /app/vendor/talibins/lib
 
 
 #Set the following bundle config for talib_ruby gem for your app
