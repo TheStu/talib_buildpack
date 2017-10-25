@@ -29,6 +29,10 @@ make clean
 make
 make install
 
+export LD_LIBRARY_PATH="/app/vendor/ta-lib/lib:$LD_LIBRARY_PATH"
+export ARCHFLAGS="-arch x86_64"
+export LD_RUN_PATH="/app/vendor/ta-lib/lib:$LD_RUN_PATH"
+export LIBRARY_PATH="/app/vendor/ta-lib/lib:$LIBRARY_PATH"
 #echo "=====> Copy libs and include"
 #cp -R "$TALIB_DIR/src/.libs" /app/vendor/talibins/lib
 
