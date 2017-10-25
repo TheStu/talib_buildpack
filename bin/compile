@@ -20,6 +20,9 @@ echo "=====> Fix Makefile.in"
 cd $VENDOR_DIR
 find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/talibins/g' {} +
 mkdir talibins
+mkdir talibins/lib
+mkdir talibins/include
+
 
 echo "=====> Compiling talib"
 cd $TALIB_DIR
@@ -27,6 +30,9 @@ chmod +x configure
 ./configure LDFLAGS="-lm"
 make
 make install
+
+echo "=====> Copy libs and include"
+cp -R "$TALIB_DIR/src/.libs" /app/vendor/talibins/lib
 
 
 #Set the following bundle config for talib_ruby gem for your app
