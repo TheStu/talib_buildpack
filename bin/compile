@@ -18,10 +18,7 @@ curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-
 
 echo "=====> Fix Makefile.in"
 cd $VENDOR_DIR
-find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/talibins/g' {} +
-mkdir -p talibins
-mkdir -p talibins/lib
-mkdir -p talibins/include
+find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/ta-lib/g' {} +
 
 
 echo "=====> Compiling talib"
@@ -36,7 +33,7 @@ make install
 
 
 #Set the following bundle config for talib_ruby gem for your app
-#	heroku config:set BUNDLE_BUILD__TALIB_RUBY="--test=/test --with-talib-include=/app/vendor/talibins/include  --with-talib-lib=/app/vendor/talibins/lib"
+#	heroku config:set BUNDLE_BUILD__TALIB_RUBY="--with-talib-include=/app/vendor/ta-lib/include  --with-talib-lib=/app/vendor/ta-lib/lib"
 #Put gem 'talib_ruby' in your Gemfile 
 
 
