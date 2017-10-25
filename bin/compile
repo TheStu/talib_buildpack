@@ -13,15 +13,13 @@ VENDOR_DIR="$BUILD_DIR/vendor"
 TALIB_DIR="$BUILD_DIR/vendor/ta-lib"
 
 
-#echo "=====> Getting talib sources"
-#curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz" -s -o - | tar -xvzf - -C "$VENDOR_DIR"
+echo "=====> Getting talib sources"
+curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz" -s -o - | tar -xvzf - -C "$VENDOR_DIR"
 
-#echo "=====> Making dirs"
-#LIBRARY_PATH="$VENDOR_DIR/lib"
-#LD_LIBRARY_PATH="$VENDOR_DIR/lib"
-#CPATH="$VENDOR_DIR/include"
-#mkdir $LIBRARY_PATH
-#mkdir $CPATH
+echo "=====> Fix Makefile.in"
+cd $VENDOR_DIR
+find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/talibins/g' {} +
+mkdir talibins
 
 echo "=====> Compiling talib"
 cd $TALIB_DIR
@@ -30,10 +28,10 @@ chmod +x configure
 make
 make install
 
-echo "=====> Config bundle for talib_ruby"
-cd $BUILD_DIR
-#bundle config build.talib_ruby --with-talib-include=/app/vendor/ta-lib/include --with-talib-lib=/app/vendor/ta-lib/lib
-#env ARCHFLAGS="-arch x86_64" gem install talib_ruby -- --with-talib-include="/app/vendor/ta-lib/include"  --with-talib-lib="/app/vendor/ta-lib/lib"
+
+#Set the following bundle config for talib_ruby gem for your app
+#	heroku config:set BUNDLE_BUILD__TALIB_RUBY="--test=/test --with-talib-include=/app/vendor/talibins/include  --with-talib-lib=/app/vendor/talibins/lib"
+#Put gem 'talib_ruby' in your Gemfile 
 
 
 
