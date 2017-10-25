@@ -24,7 +24,7 @@ find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = 
 echo "=====> Compiling talib"
 cd $TALIB_DIR
 chmod +x configure
-./configure LDFLAGS="-lm"
+./configure
 make clean
 make
 make install
