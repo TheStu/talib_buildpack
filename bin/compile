@@ -32,7 +32,7 @@ make install
 
 echo "=====> Config bundle for talib_ruby"
 cd $BUILD_DIR
-bundle config build.talib_ruby --with-talib-include=/app/vendor/ta-lib/include --with-talib-lib=/app/vendor/ta-lib/lib
+#bundle config build.talib_ruby --with-talib-include=/app/vendor/ta-lib/include --with-talib-lib=/app/vendor/ta-lib/lib
 #env ARCHFLAGS="-arch x86_64" gem install talib_ruby -- --with-talib-include="/app/vendor/ta-lib/include"  --with-talib-lib="/app/vendor/ta-lib/lib"
 
 
