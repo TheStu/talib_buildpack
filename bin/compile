@@ -30,9 +30,9 @@ make
 make install
 
 echo "=====> Check files"
-cd /app/vendor/ta-lib/lib
+cd $HOME/lib
 ls -la
-cd /app/vendor/ta-lib/include/ta-lib
+cd $HOME/include/ta-lib
 ls -la
 
 export LD_LIBRARY_PATH=/app/vendor/ta-lib/lib:$LD_LIBRARY_PATH
