@@ -16,15 +16,15 @@ TALIB_DIR="$BUILD_DIR/vendor/ta-lib"
 echo "=====> Getting talib sources"
 curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz" -s -o - | tar -xvzf - -C "$VENDOR_DIR"
 
-echo "=====> Fix Makefile.in"
-cd $VENDOR_DIR
-find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/ta-lib/g' {} +
+#echo "=====> Fix Makefile.in"
+#cd $VENDOR_DIR
+#find . -type f -name "*Makefile.in*" -exec sed -i 's/prefix = @prefix@/prefix = \/app\/vendor\/ta-lib/g' {} +
 
 
 echo "=====> Compiling talib"
 cd $TALIB_DIR
 chmod +x configure
-./configure LDFLAGS="-lm"
+./configure LDFLAGS="-lm" --prefix=$HOME
 make clean
 make
 make install
