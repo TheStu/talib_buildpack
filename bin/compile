@@ -24,21 +24,21 @@ curl "https://netix.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-
 echo "=====> Compiling talib"
 cd $TALIB_DIR
 chmod +x configure
-./configure LDFLAGS="-lm" --prefix=$HOME
+./configure LDFLAGS="-lm" --prefix=$BUILD_DIR
 make clean
 make
 make install
 
 echo "=====> Check files"
-cd $HOME/lib
+cd $BUILD_DIR/lib
 ls -la
-cd $HOME/include/ta-lib
+cd $BUILD_DIR/include/ta-lib
 ls -la
 
-export LD_LIBRARY_PATH=/app/vendor/ta-lib/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$BUILD_DIR/lib:$LD_LIBRARY_PATH
 export ARCHFLAGS="-arch x86_64"
-export LD_RUN_PATH=/app/vendor/ta-lib/lib:$LD_RUN_PATH
-export LIBRARY_PATH=/app/vendor/ta-lib/lib:$LIBRARY_PATH
+export LD_RUN_PATH=$BUILD_DIR/lib:$LD_RUN_PATH
+export LIBRARY_PATH=$BUILD_DIR/lib:$LIBRARY_PATH
 #echo "=====> Copy libs and include"
 #cp -R "$TALIB_DIR/src/.libs" /app/vendor/talibins/lib
 
